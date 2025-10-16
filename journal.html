@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bangle Journal | Tinkling Tales Stories</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-hero journal-hero">
+      <nav class="navbar">
+        <a class="logo" href="index.html">Tinkling Tales</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="journal.html" aria-current="page">Journal</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><button class="cart-button" aria-label="Open cart">Cart (<span id="cart-count">0</span>)</button></li>
+        </ul>
+      </nav>
+      <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="tagline">Styling stories &amp; behind-the-scenes tales</p>
+        <h1>The sound of celebration in every article</h1>
+        <p>
+          Discover how to layer bangles like a stylist, peek into our artisan
+          studios, and get first dibs on new drops through our journal updates.
+        </p>
+        <div class="hero-actions">
+          <a href="#latest-entries" class="primary-button">Read Latest Posts</a>
+          <a href="https://www.facebook.com/TinklingTales" class="secondary-button" target="_blank" rel="noopener"
+            >Follow on Facebook</a
+          >
+        </div>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+    </header>
+
+    <main>
+      <section class="page-section" id="latest-entries">
+        <div class="section-header">
+          <p class="eyebrow">Featured Reads</p>
+          <h2>Curated notes from the studio</h2>
+        </div>
+        <div class="journal-list">
+          <article class="journal-entry">
+            <h3>Layering Bangles with Confidence</h3>
+            <p>
+              Learn the art of mixing metals, widths, and textures to create a
+              signature stack that moves with you from brunch to ballroom.
+            </p>
+            <a href="https://www.facebook.com/TinklingTales" target="_blank" rel="noopener" class="text-link">Read on Facebook</a>
+          </article>
+          <article class="journal-entry">
+            <h3>The Making of Midnight Noor</h3>
+            <p>
+              Step inside our artisan workshop to see how mirror work and pearl
+              clusters are hand-applied to our best-selling festive set.
+            </p>
+            <a href="https://www.facebook.com/TinklingTales" target="_blank" rel="noopener" class="text-link">Watch the Reel</a>
+          </article>
+          <article class="journal-entry">
+            <h3>Care Guide: Keeping the Chime Alive</h3>
+            <p>
+              Simple rituals to protect your bangles from humidity, perfumes, and
+              everyday wear so they shine season after season.
+            </p>
+            <a href="https://www.facebook.com/TinklingTales" target="_blank" rel="noopener" class="text-link">Download Checklist</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section journal-categories">
+        <div class="section-header">
+          <p class="eyebrow">Browse Topics</p>
+          <h2>Find a tale that speaks to you</h2>
+        </div>
+        <div class="category-grid">
+          <article class="category-card">
+            <h3>Styling Tips</h3>
+            <p>Fresh stacking ideas curated by our in-house stylists.</p>
+          </article>
+          <article class="category-card">
+            <h3>Artisan Diaries</h3>
+            <p>Stories from the makers who bring each sparkle to life.</p>
+          </article>
+          <article class="category-card">
+            <h3>Behind the Drops</h3>
+            <p>Peek into moodboards, material sourcing, and prototyping.</p>
+          </article>
+          <article class="category-card">
+            <h3>Celebration Edits</h3>
+            <p>Shop-the-look guides for weddings, festivals, and gifts.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section newsletter">
+        <div class="newsletter-card">
+          <h2>Join the Tinkling Tales circle</h2>
+          <p>
+            Subscribe for drop alerts, styling workshops, and exclusive Facebook
+            offers delivered once a month.
+          </p>
+          <form class="contact-form newsletter-form" aria-label="Subscribe to updates">
+            <div class="form-group">
+              <label for="newsletter-name">Name</label>
+              <input type="text" id="newsletter-name" name="name" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <label for="newsletter-email">Email</label>
+              <input type="email" id="newsletter-email" name="email" placeholder="you@example.com" required />
+            </div>
+            <button type="submit" class="primary-button">Subscribe</button>
+            <p class="form-note">We respect your inbox and send only the good stuff.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div>
+          <h3>Tinkling Tales</h3>
+          <p>Handcrafted bangles that celebrate your story.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="collection.html">Shop</a></li>
+            <li><a href="about.html">Our Promise</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay in Touch</h4>
+          <p>Follow along for new drops, styling tips, and exclusive offers.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/TinklingTales" aria-label="Facebook" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.pinterest.com" aria-label="Pinterest" target="_blank" rel="noopener">Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <p class="footer-note">© <span id="year"></span> Tinkling Tales. All rights reserved.</p>
+    </footer>
+
+    <div class="cart" id="cart" aria-hidden="true">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="cart-close" aria-label="Close cart">&times;</button>
+      </div>
+      <ul class="cart-items" id="cart-items"></ul>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cart-total">₹0</strong>
+        </div>
+        <button class="primary-button checkout-button">Checkout on Facebook</button>
+        <p class="cart-note">
+          Ready to order? Screenshot your cart and DM us on Facebook to complete
+          your purchase.
+        </p>
+      </div>
+    </div>
+
+    <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
