@@ -1,6 +1,7 @@
 import { registerPage } from "../app.js";
 import { getCartTotals, updateQuantity, removeFromCart, clearCart } from "../cart.js";
 import { formatCurrency, showToast } from "../utils.js";
+import { getIcon } from "../icons.js";
 
 function renderCartTable(cart) {
   const tbody = document.querySelector("[data-cart-body]");
@@ -26,7 +27,31 @@ function renderCartTable(cart) {
         </td>
         <td data-label="Price">${formatCurrency(item.price)}</td>
         <td data-label="Qty">
-          <input type="number" min="1" value="${item.quantity}" data-action="update-quantity" aria-label="Update quantity for ${item.name}" />
+          <div class="quantity-control" data-quantity>
+            <button
+              type="button"
+              class="quantity-control__btn"
+              data-action="decrease-quantity"
+              aria-label="Decrease quantity for ${item.name}"
+            >
+              <span class="icon icon--inline" aria-hidden="true">${getIcon("minus")}</span>
+            </button>
+            <input
+              type="number"
+              min="1"
+              value="${item.quantity}"
+              data-action="update-quantity"
+              aria-label="Update quantity for ${item.name}"
+            />
+            <button
+              type="button"
+              class="quantity-control__btn"
+              data-action="increase-quantity"
+              aria-label="Increase quantity for ${item.name}"
+            >
+              <span class="icon icon--inline" aria-hidden="true">${getIcon("plus")}</span>
+            </button>
+          </div>
         </td>
         <td data-label="Total">${formatCurrency(item.price * item.quantity)}</td>
         <td data-label="Remove">
@@ -72,6 +97,28 @@ function handleCartEvents() {
   });
 
   table.addEventListener("click", (event) => {
+    const adjustButton = event.target.closest(
+      "[data-action='increase-quantity'], [data-action='decrease-quantity']"
+    );
+
+    if (adjustButton) {
+      const row = adjustButton.closest("[data-product-id]");
+      const productId = row?.dataset.productId;
+      const input = row?.querySelector("[data-action='update-quantity']");
+      if (!productId || !input) return;
+
+      const delta = adjustButton.dataset.action === "increase-quantity" ? 1 : -1;
+      const currentValue = parseInt(input.value, 10) || 1;
+      const nextValue = Math.max(1, currentValue + delta);
+
+      if (nextValue === currentValue) return;
+
+      updateQuantity(productId, nextValue);
+      refreshCart();
+      showToast("Cart updated", "success");
+      return;
+    }
+
     const button = event.target.closest("[data-action='remove-item']");
     if (!button) return;
 
