@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout | Tinkling Tales</title>
+    <meta name="description" content="Secure checkout for your Tinkling Tales order." />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body data-page="checkout" data-protected="user">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container grid grid--columns-2-1">
+          <form class="card form-grid" data-checkout-form>
+            <h1 class="section__title text-left">Checkout</h1>
+            <section class="form-grid form-grid--2">
+              <div class="input-field">
+                <label for="firstName">First name</label>
+                <input id="firstName" name="firstName" type="text" required autocomplete="given-name" />
+              </div>
+              <div class="input-field">
+                <label for="lastName">Last name</label>
+                <input id="lastName" name="lastName" type="text" required autocomplete="family-name" />
+              </div>
+              <div class="input-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required autocomplete="email" />
+              </div>
+              <div class="input-field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+              </div>
+            </section>
+            <section class="form-grid form-grid--2">
+              <div class="input-field">
+                <label for="address">Address</label>
+                <input id="address" name="address" type="text" required autocomplete="street-address" />
+              </div>
+              <div class="input-field">
+                <label for="city">City</label>
+                <input id="city" name="city" type="text" required autocomplete="address-level2" />
+              </div>
+              <div class="input-field">
+                <label for="state">State</label>
+                <input id="state" name="state" type="text" required autocomplete="address-level1" />
+              </div>
+              <div class="input-field">
+                <label for="postal">Postal code</label>
+                <input id="postal" name="postal" type="text" required autocomplete="postal-code" />
+              </div>
+            </section>
+            <section class="form-grid">
+              <div class="input-field">
+                <label for="notes">Order notes</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="Share outfit colours, sizes or custom details"></textarea>
+              </div>
+            </section>
+            <button type="submit">Place order</button>
+          </form>
+          <aside class="card">
+            <h2>Order summary</h2>
+            <div data-checkout-summary></div>
+            <p class="note-text">
+              You will receive a secure payment link from our team after confirming your order details.
+            </p>
+          </aside>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/pages/checkout.js"></script>
+  </body>
+</html>
