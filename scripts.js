@@ -62,6 +62,7 @@ const products = [
 ];
 
 const productList = document.getElementById('product-list');
+const filterButtons = document.querySelectorAll('[data-filter]');
 const cart = document.getElementById('cart');
 const cartBackdrop = document.getElementById('cart-backdrop');
 const cartCount = document.getElementById('cart-count');
@@ -74,6 +75,15 @@ const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 const cartState = new Map();
+let activeFilter = 'all';
+
+const initialFilterButton = Array.from(filterButtons).find((button) =>
+  button.classList.contains('is-active') && button.dataset.filter
+);
+
+if (initialFilterButton?.dataset.filter) {
+  activeFilter = initialFilterButton.dataset.filter;
+}
 
 function formatPrice(amount) {
   return `₹${amount.toLocaleString('en-IN')}`;
@@ -82,6 +92,26 @@ function formatPrice(amount) {
 function renderProducts() {
   if (!productList) return;
 
+  const filteredProducts =
+    activeFilter === 'all'
+      ? products
+      : products.filter((product) => product.category === activeFilter);
+
+  productList.innerHTML = '';
+
+  if (filteredProducts.length === 0) {
+    const emptyState = document.createElement('p');
+    emptyState.className = 'empty-state';
+    emptyState.textContent =
+      productList.dataset.emptyMessage ||
+      'We are carefully crafting new pieces. Check back soon!';
+    productList.appendChild(emptyState);
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+
+  filteredProducts.forEach((product) => {
   const fragment = document.createDocumentFragment();
 
   products.forEach((product) => {
@@ -108,6 +138,8 @@ function renderProducts() {
 }
 
 function updateCartDisplay() {
+  if (!cartItemsContainer || !cartTotal || !cartCount) return;
+
   cartItemsContainer.innerHTML = '';
 
   if (cartState.size === 0) {
@@ -175,6 +207,7 @@ function removeFromCart(productId) {
 }
 
 function openCart() {
+  if (!cart || !cartBackdrop) return;
   cart.classList.add('is-open');
   cartBackdrop.classList.add('is-active');
   cart.setAttribute('aria-hidden', 'false');
@@ -182,6 +215,7 @@ function openCart() {
 }
 
 function closeCart() {
+  if (!cart || !cartBackdrop) return;
   cart.classList.remove('is-open');
   cartBackdrop.classList.remove('is-active');
   cart.setAttribute('aria-hidden', 'true');
@@ -189,6 +223,7 @@ function closeCart() {
 }
 
 function toggleNav() {
+  if (!navLinks || !navToggle) return;
   const isOpen = navLinks.classList.toggle('is-open');
   navToggle.setAttribute('aria-expanded', String(isOpen));
 }
@@ -204,6 +239,7 @@ function initEventListeners() {
     }
   });
 
+  cartItemsContainer?.addEventListener('click', (event) => {
   cartItemsContainer.addEventListener('click', (event) => {
     const target = event.target;
     if (
@@ -219,6 +255,29 @@ function initEventListeners() {
   cartBackdrop?.addEventListener('click', closeCart);
 
   navToggle?.addEventListener('click', toggleNav);
+
+  filterButtons.forEach((button) => {
+    if (button instanceof HTMLButtonElement) {
+      button.setAttribute(
+        'aria-pressed',
+        button.classList.contains('is-active') ? 'true' : 'false'
+      );
+    }
+
+    button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter || 'all';
+
+      filterButtons.forEach((other) => {
+        if (other instanceof HTMLButtonElement) {
+          const isActive = other === button;
+          other.classList.toggle('is-active', isActive);
+          other.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        }
+      });
+
+      renderProducts();
+    });
+  });
 
   checkoutButton?.addEventListener('click', () => {
     window.open('https://www.facebook.com/TinklingTales', '_blank');

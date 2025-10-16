@@ -34,6 +34,14 @@ a:focus {
   text-decoration: underline;
 }
 
+.text-link {
+  font-weight: 600;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+.hero,
+.page-hero {
 .hero {
   position: relative;
   background: url('https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1600&q=80')
@@ -44,6 +52,8 @@ a:focus {
   justify-content: space-between;
 }
 
+.hero::before,
+.page-hero::before {
 .hero::before {
   content: '';
   position: absolute;
@@ -75,6 +85,8 @@ a:focus {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
+  color: var(--color-accent);
+  text-decoration: none;
 }
 
 .nav-links {
@@ -89,6 +101,21 @@ a:focus {
   font-weight: 500;
   letter-spacing: 0.05em;
   transition: opacity 0.3s ease;
+}
+
+.nav-links a[aria-current='page'] {
+  opacity: 0.6;
+  position: relative;
+}
+
+.nav-links a[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.4rem;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
 }
 
 .cart-button {
@@ -138,12 +165,16 @@ a:focus {
   margin-bottom: 1rem;
 }
 
+.hero h1,
+.page-hero h1 {
 .hero h1 {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   margin-bottom: 1.5rem;
 }
 
+.hero p,
+.page-hero p {
 .hero p {
   max-width: 40rem;
   color: var(--color-muted);
@@ -192,6 +223,8 @@ a:focus {
   color: var(--color-bg);
 }
 
+.section,
+.page-section {
 .section {
   padding: 6rem 1.5rem;
 }
@@ -210,12 +243,16 @@ a:focus {
   margin-bottom: 1rem;
 }
 
+.section h2,
+.page-section h2 {
 .section h2 {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 1rem;
 }
 
+.section p,
+.page-section p {
 .section p {
   color: var(--color-muted);
 }
@@ -619,6 +656,227 @@ a:focus {
   pointer-events: all;
 }
 
+.page-hero {
+  min-height: 70vh;
+  justify-content: center;
+  padding: 6rem 0 4rem;
+}
+
+.page-hero .hero-content {
+  padding: 3rem;
+}
+
+.about-hero {
+  background: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1600&q=80')
+    center/cover no-repeat;
+}
+
+.collection-hero {
+  background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80')
+    center/cover no-repeat;
+}
+
+.journal-hero {
+  background: url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1600&q=80')
+    center/cover no-repeat;
+}
+
+.contact-hero {
+  background: url('https://images.unsplash.com/photo-1524499982521-1ffd58dd89ea?auto=format&fit=crop&w=1600&q=80')
+    center/cover no-repeat;
+}
+
+.story-grid,
+.value-cards,
+.artisan-grid,
+.bundle-grid,
+.category-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.story-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.value-cards {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.value-cards article,
+.artisan-grid article,
+.bundle-card,
+.category-card,
+.visit-card,
+.callout-card,
+.newsletter-card {
+  background: var(--color-panel);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  backdrop-filter: blur(6px);
+}
+
+.value-cards h3,
+.artisan-grid h3,
+.bundle-card h3,
+.category-card h3,
+.newsletter-card h2,
+.visit-card h2 {
+  font-family: var(--font-heading);
+  margin-bottom: 0.8rem;
+}
+
+.timeline-list {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  list-style: none;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.timeline-list li {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+}
+
+.artisan-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.callout {
+  display: flex;
+  justify-content: center;
+  padding-top: 0;
+}
+
+.callout-card {
+  text-align: center;
+  max-width: 720px;
+}
+
+.callout-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.collection-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.filter-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-text);
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.filter-button.is-active,
+.filter-button:hover,
+.filter-button:focus {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--color-muted);
+  padding: 3rem 1rem;
+}
+
+.highlight--collection {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 2rem 2rem 0 0;
+}
+
+.bundle-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.journal-list {
+  display: grid;
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.journal-entry {
+  background: var(--color-panel);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.category-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.newsletter-card {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.newsletter-form .form-group {
+  text-align: left;
+}
+
+.newsletter-form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.faqs .faq-list {
+  display: grid;
+  gap: 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.faqs article {
+  background: var(--color-panel);
+  padding: 2rem;
+  border-radius: 1.2rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.visit {
+  display: flex;
+  justify-content: center;
+}
+
+.visit-card {
+  max-width: 560px;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   .navbar {
     padding: 1.5rem;
@@ -650,6 +908,20 @@ a:focus {
     transform: translateY(0);
     pointer-events: all;
   }
+
+  .timeline-list li {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    text-align: left;
+  }
+
+  .timeline-year {
+    display: inline-block;
+  }
+
+  .callout-actions {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 600px) {
@@ -660,5 +932,9 @@ a:focus {
   .hero-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .page-hero .hero-content {
+    padding: 3rem 1.5rem;
   }
 }
