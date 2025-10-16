@@ -42,6 +42,7 @@ a:focus {
 
 .hero,
 .page-hero {
+.hero {
   position: relative;
   background: url('https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1600&q=80')
     center/cover no-repeat;
@@ -53,6 +54,7 @@ a:focus {
 
 .hero::before,
 .page-hero::before {
+.hero::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -165,6 +167,7 @@ a:focus {
 
 .hero h1,
 .page-hero h1 {
+.hero h1 {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   margin-bottom: 1.5rem;
@@ -172,6 +175,7 @@ a:focus {
 
 .hero p,
 .page-hero p {
+.hero p {
   max-width: 40rem;
   color: var(--color-muted);
 }
@@ -221,6 +225,7 @@ a:focus {
 
 .section,
 .page-section {
+.section {
   padding: 6rem 1.5rem;
 }
 
@@ -240,6 +245,7 @@ a:focus {
 
 .section h2,
 .page-section h2 {
+.section h2 {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 1rem;
@@ -247,6 +253,7 @@ a:focus {
 
 .section p,
 .page-section p {
+.section p {
   color: var(--color-muted);
 }
 

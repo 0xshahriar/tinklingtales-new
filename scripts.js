@@ -112,6 +112,9 @@ function renderProducts() {
   const fragment = document.createDocumentFragment();
 
   filteredProducts.forEach((product) => {
+  const fragment = document.createDocumentFragment();
+
+  products.forEach((product) => {
     const card = document.createElement('article');
     card.className = 'product-card';
     card.innerHTML = `
@@ -237,6 +240,7 @@ function initEventListeners() {
   });
 
   cartItemsContainer?.addEventListener('click', (event) => {
+  cartItemsContainer.addEventListener('click', (event) => {
     const target = event.target;
     if (
       target instanceof HTMLButtonElement &&
