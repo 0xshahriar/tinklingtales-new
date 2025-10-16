@@ -84,6 +84,108 @@ async function loadDashboard() {
   }
 }
 
+function handleProductForm() {
+  const form = document.querySelector("[data-product-form]");
+  if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submitBtn = form.querySelector("button[type='submit']");
+    const token = auth.getState().token;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+    payload.price = Number(payload.price);
+    if (Number.isNaN(payload.price)) {
+      showToast("Enter a valid price in BDT", "error");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Save product";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Saving...";
+
+    try {
+      await api.upsertProduct(payload, token);
+      showToast("Product saved successfully", "success");
+      form.reset();
+      await loadDashboard();
+    } catch (error) {
+      const message = error.status === 403 ? ERROR_MESSAGES.forbidden : ERROR_MESSAGES.unknown;
+      showToast(message, "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Save product";
+    }
+  });
+}
+
+function handleOrderForm() {
+  const form = document.querySelector("[data-order-form]");
+  if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submitBtn = form.querySelector("button[type='submit']");
+    const token = auth.getState().token;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Updating...";
+
+    try {
+      await api.updateOrderStatus(payload, token);
+      showToast("Order status updated", "success");
+      form.reset();
+      await loadDashboard();
+    } catch (error) {
+      const message =
+        error.status === 404 ? "Order not found" : error.status === 403 ? ERROR_MESSAGES.forbidden : ERROR_MESSAGES.unknown;
+      showToast(message, "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Update order";
+    }
+  });
+}
+
+function handleRoleForm() {
+  const form = document.querySelector("[data-role-form]");
+  if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submitBtn = form.querySelector("button[type='submit']");
+    const token = auth.getState().token;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Updating...";
+
+    try {
+      await api.updateUserRole(payload, token);
+      showToast("User role updated", "success");
+      form.reset();
+    } catch (error) {
+      const message =
+        error.status === 404
+          ? "User not found"
+          : error.status === 403
+          ? ERROR_MESSAGES.forbidden
+          : ERROR_MESSAGES.unknown;
+      showToast(message, "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Update role";
+    }
+  });
+}
+
 registerPage("admin", async () => {
   await loadDashboard();
+  handleProductForm();
+  handleOrderForm();
+  handleRoleForm();
 });

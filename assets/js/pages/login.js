@@ -6,6 +6,9 @@ import { ERROR_MESSAGES } from "../constants.js";
 
 function parseRedirect() {
   const params = new URLSearchParams(window.location.search);
+  if (params.get("admin") === "true") {
+    return "admin.html";
+  }
   return params.get("redirect") || "account.html";
 }
 

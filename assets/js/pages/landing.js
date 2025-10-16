@@ -1,6 +1,7 @@
 import { registerPage } from "../app.js";
 import { products, testimonials } from "../../data/products.js";
 import { formatCurrency } from "../utils.js";
+import { FALLBACK_IMAGE } from "../constants.js";
 
 function renderHeroProducts() {
   const container = document.querySelector("[data-hero-products]");
@@ -11,7 +12,13 @@ function renderHeroProducts() {
     .map(
       (product) => `
       <article class="card product-card">
-        <img src="${product.image}" alt="${product.name}" class="product-card__image" loading="lazy" />
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          class="product-card__image"
+          loading="lazy"
+          onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+        />
         <div class="product-card__content">
           <span class="tag">Bestseller</span>
           <h3 class="card__title">${product.name}</h3>
@@ -95,7 +102,7 @@ function renderInstagramFeed() {
     .map(
       (src, index) => `
       <a href="https://www.instagram.com/tinklingtales" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
-        <img src="${src}" alt="Instagram preview ${index + 1}" loading="lazy" />
+        <img src="${src}" alt="Instagram preview ${index + 1}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'" />
       </a>
     `
     )

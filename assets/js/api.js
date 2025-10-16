@@ -49,10 +49,22 @@ export const api = {
   authenticate(credentials) {
     return request("/auth/login", { method: "POST", body: credentials });
   },
+  registerAccount(details) {
+    return request("/auth/register", { method: "POST", body: details });
+  },
   getOrders(token) {
     return request("/orders", { token });
   },
   getDashboard(token) {
     return request("/admin/dashboard", { token });
+  },
+  upsertProduct(data, token) {
+    return request("/admin/products", { method: "POST", body: data, token });
+  },
+  updateOrderStatus(data, token) {
+    return request("/admin/orders/status", { method: "PATCH", body: data, token });
+  },
+  updateUserRole(data, token) {
+    return request("/admin/users/role", { method: "PATCH", body: data, token });
   }
 };

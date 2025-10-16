@@ -20,16 +20,16 @@ function renderCartTable(cart) {
     .map(
       (item) => `
       <tr data-product-id="${item.id}">
-        <td>
+        <td data-label="Item">
           <strong>${item.name}</strong>
           <div class="text-muted text-sm">${item.category}</div>
         </td>
-        <td>${formatCurrency(item.price)}</td>
-        <td>
+        <td data-label="Price">${formatCurrency(item.price)}</td>
+        <td data-label="Qty">
           <input type="number" min="1" value="${item.quantity}" data-action="update-quantity" aria-label="Update quantity for ${item.name}" />
         </td>
-        <td>${formatCurrency(item.price * item.quantity)}</td>
-        <td>
+        <td data-label="Total">${formatCurrency(item.price * item.quantity)}</td>
+        <td data-label="Remove">
           <button type="button" class="button-link" data-action="remove-item">Remove</button>
         </td>
       </tr>

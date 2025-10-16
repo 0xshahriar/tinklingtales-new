@@ -1,5 +1,6 @@
 import { APP_CONFIG } from "../../js/constants.js";
 import { auth } from "../../js/auth.js";
+import { getIcon } from "../../js/icons.js";
 
 export function renderHeader(currentPath = "/") {
   const { isAuthenticated, isAdmin } = auth.getState();
@@ -30,11 +31,13 @@ export function renderHeader(currentPath = "/") {
       <div class="container">
         <nav class="navbar" aria-label="Main navigation">
           <a class="navbar__brand" href="index.html" aria-label="${APP_CONFIG.siteName} home">
-            <span>✨</span>
+            <span class="icon icon--brand" aria-hidden="true">${getIcon("logo")}</span>
             <span>${APP_CONFIG.siteName}</span>
           </a>
           <button class="navbar__toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
-            ☰
+            <span class="icon" data-icon="menu" aria-hidden="true">${getIcon("menu")}</span>
+            <span class="icon" data-icon="close" aria-hidden="true" hidden>${getIcon("close")}</span>
+            <span class="sr-only">Toggle navigation</span>
           </button>
           <div class="navbar__links" data-nav-links>
             ${navLinks}

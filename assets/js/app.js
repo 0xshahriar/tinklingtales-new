@@ -25,15 +25,26 @@ function mountLayout() {
   const toggle = document.querySelector(".navbar__toggle");
   const links = document.querySelector("[data-nav-links]");
   if (toggle && links) {
+    const menuIcon = toggle.querySelector('[data-icon="menu"]');
+    const closeIcon = toggle.querySelector('[data-icon="close"]');
+
     toggle.addEventListener("click", () => {
       const isOpen = links.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", String(isOpen));
+      if (menuIcon && closeIcon) {
+        menuIcon.hidden = isOpen;
+        closeIcon.hidden = !isOpen;
+      }
     });
 
     links.querySelectorAll("a").forEach((link) =>
       link.addEventListener("click", () => {
         links.classList.remove("is-open");
         toggle.setAttribute("aria-expanded", "false");
+        if (menuIcon && closeIcon) {
+          menuIcon.hidden = false;
+          closeIcon.hidden = true;
+        }
       })
     );
   }

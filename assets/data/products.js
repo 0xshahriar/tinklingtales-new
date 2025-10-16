@@ -2,13 +2,13 @@ export const products = [
   {
     id: "lavender-dream",
     name: "Lavender Dream Bangles",
-    price: 24.99,
+    price: 2490,
     category: "Premade Sets",
     bestseller: true,
     colors: ["Lavender", "Champagne", "Silver"],
     materials: ["Glass", "Kundan", "Pearls"],
     description:
-      "A dreamy stack inspired by twilight skies, featuring hand-set kundan stones and pearls for the perfect shimmer.",
+      "A dreamy stack inspired by Dhaka's twilight skies, featuring hand-set kundan stones and pearls for the perfect shimmer.",
     image:
       "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=80",
     rating: 4.9,
@@ -17,13 +17,13 @@ export const products = [
   {
     id: "scarlet-soiree",
     name: "Scarlet Soiree Stack",
-    price: 32.5,
+    price: 3250,
     category: "Custom Favourites",
     bestseller: true,
     colors: ["Crimson", "Gold"],
     materials: ["Metal", "Glass", "Crystal"],
     description:
-      "A bold red and gold arrangement perfect for celebrations and festive evenings.",
+      "A bold red and gold arrangement perfect for Gaye Holud celebrations and festive evenings.",
     image:
       "https://images.unsplash.com/photo-1576502200916-3808e07386a5?auto=format&fit=crop&w=900&q=80",
     rating: 4.8,
@@ -32,7 +32,7 @@ export const products = [
   {
     id: "blush-aurora",
     name: "Blush Aurora Ensemble",
-    price: 27.0,
+    price: 2790,
     category: "Premade Sets",
     colors: ["Rose", "Blush", "Champagne"],
     materials: ["Glass", "Zircon", "Metal"],
@@ -46,7 +46,7 @@ export const products = [
   {
     id: "gilded-noir",
     name: "Gilded Noir Statement",
-    price: 34.99,
+    price: 3490,
     category: "Limited Edition",
     colors: ["Black", "Gold"],
     materials: ["Metal", "Onyx", "Crystals"],
@@ -60,7 +60,7 @@ export const products = [
   {
     id: "sunset-raga",
     name: "Sunset Raga Collection",
-    price: 29.5,
+    price: 2950,
     category: "Custom Favourites",
     colors: ["Orange", "Coral", "Gold"],
     materials: ["Glass", "Thread", "Meenakari"],
@@ -74,7 +74,7 @@ export const products = [
   {
     id: "ivory-serenade",
     name: "Ivory Serenade Bridal Set",
-    price: 45.0,
+    price: 4590,
     category: "Bridal",
     colors: ["Ivory", "Gold", "Pearl"],
     materials: ["Pearl", "Kundan", "Metal"],
@@ -91,19 +91,19 @@ export const testimonials = [
   {
     quote:
       "The craftsmanship is unmatched. My custom bridal bangles were the highlight of my wedding look!",
-    author: "Ananya Sharma",
-    location: "Mumbai"
+    author: "Anika Rahman",
+    location: "Dhaka"
   },
   {
     quote:
-      "I ordered the Scarlet Soiree set for a friend's mehendi and received compliments all evening!",
-    author: "Priya Menon",
-    location: "Bengaluru"
+      "I ordered the Scarlet Soiree set for my sister's holud and received compliments all evening!",
+    author: "Maliha Chowdhury",
+    location: "Chattogram"
   },
   {
     quote:
       "Super responsive team and beautiful packaging. Tinkling Tales never disappoints!",
-    author: "Radhika Patel",
-    location: "Ahmedabad"
+    author: "Sadia Karim",
+    location: "Sylhet"
   }
 ];

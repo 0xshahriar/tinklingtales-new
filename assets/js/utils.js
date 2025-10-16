@@ -1,8 +1,14 @@
 export function formatCurrency(value) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR"
-  }).format(value);
+  try {
+    return new Intl.NumberFormat("bn-BD", {
+      style: "currency",
+      currency: "BDT",
+      maximumFractionDigits: 0
+    }).format(value);
+  } catch (error) {
+    console.warn("Falling back to manual currency format", error);
+    return `৳${Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+  }
 }
 
 export function createElementFromHTML(htmlString) {
