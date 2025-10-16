@@ -73,6 +73,8 @@ const cartClose = document.querySelector('.cart-close');
 const checkoutButton = document.querySelector('.checkout-button');
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
+const navBar = document.querySelector('.navbar');
+const navBackdrop = document.getElementById('nav-backdrop');
 
 if (navToggle && !navToggle.hasAttribute('aria-expanded')) {
   navToggle.setAttribute('aria-expanded', 'false');
@@ -116,9 +118,6 @@ function renderProducts() {
   const fragment = document.createDocumentFragment();
 
   filteredProducts.forEach((product) => {
-  const fragment = document.createDocumentFragment();
-
-  products.forEach((product) => {
     const card = document.createElement('article');
     card.className = 'product-card';
     card.innerHTML = `
@@ -226,16 +225,31 @@ function closeCart() {
   cartBackdrop.setAttribute('aria-hidden', 'true');
 }
 
+function syncNavPosition() {
+  if (!navLinks || !navBar) return;
+  const { bottom } = navBar.getBoundingClientRect();
+  const offset = bottom + 12;
+  navLinks.style.setProperty('--nav-top', `${offset}px`);
+}
+
 function toggleNav() {
   if (!navLinks || !navToggle) return;
+  syncNavPosition();
   const isOpen = navLinks.classList.toggle('is-open');
   navToggle.setAttribute('aria-expanded', String(isOpen));
+  navBackdrop?.classList.toggle('is-active', isOpen);
+  navBackdrop?.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  document.body.classList.toggle('nav-open', isOpen);
 }
 
 function closeNav() {
   if (!navLinks || !navToggle) return;
   navLinks.classList.remove('is-open');
   navToggle.setAttribute('aria-expanded', 'false');
+  navBackdrop?.classList.remove('is-active');
+  navBackdrop?.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('nav-open');
+  navLinks.style.removeProperty('--nav-top');
 }
 
 function initEventListeners() {
@@ -250,7 +264,6 @@ function initEventListeners() {
   });
 
   cartItemsContainer?.addEventListener('click', (event) => {
-  cartItemsContainer.addEventListener('click', (event) => {
     const target = event.target;
     if (
       target instanceof HTMLButtonElement &&
@@ -265,6 +278,7 @@ function initEventListeners() {
   cartBackdrop?.addEventListener('click', closeCart);
 
   navToggle?.addEventListener('click', toggleNav);
+  navBackdrop?.addEventListener('click', closeNav);
 
   navLinks?.addEventListener('click', (event) => {
     const target = event.target;
@@ -289,6 +303,8 @@ function initEventListeners() {
   window.addEventListener('resize', () => {
     if (window.innerWidth > 900) {
       closeNav();
+    } else if (navLinks?.classList.contains('is-open')) {
+      syncNavPosition();
     }
   });
 
