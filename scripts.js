@@ -74,6 +74,10 @@ const checkoutButton = document.querySelector('.checkout-button');
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
+if (navToggle && !navToggle.hasAttribute('aria-expanded')) {
+  navToggle.setAttribute('aria-expanded', 'false');
+}
+
 const cartState = new Map();
 let activeFilter = 'all';
 
@@ -228,6 +232,12 @@ function toggleNav() {
   navToggle.setAttribute('aria-expanded', String(isOpen));
 }
 
+function closeNav() {
+  if (!navLinks || !navToggle) return;
+  navLinks.classList.remove('is-open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}
+
 function initEventListeners() {
   productList?.addEventListener('click', (event) => {
     const target = event.target;
@@ -255,6 +265,32 @@ function initEventListeners() {
   cartBackdrop?.addEventListener('click', closeCart);
 
   navToggle?.addEventListener('click', toggleNav);
+
+  navLinks?.addEventListener('click', (event) => {
+    const target = event.target;
+    if (
+      target instanceof HTMLElement &&
+      (target.closest('a') || target.closest('button'))
+    ) {
+      closeNav();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!navLinks || !navToggle) return;
+    if (!navLinks.classList.contains('is-open')) return;
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (!navLinks.contains(target) && !navToggle.contains(target)) {
+      closeNav();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      closeNav();
+    }
+  });
 
   filterButtons.forEach((button) => {
     if (button instanceof HTMLButtonElement) {
@@ -286,6 +322,7 @@ function initEventListeners() {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       closeCart();
+      closeNav();
     }
   });
 
