@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard | Tinkling Tales</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body data-page="admin" data-protected="admin">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container">
+          <div class="card mb-lg">
+            <h1 class="section__title text-left">Dashboard overview</h1>
+            <p>Review sales performance, manage orders and monitor custom requests.</p>
+          </div>
+          <section class="grid grid--4" data-admin-stats></section>
+          <section class="card mt-lg">
+            <h2>Recent orders</h2>
+            <div data-admin-orders></div>
+          </section>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/pages/admin.js"></script>
+  </body>
+</html>

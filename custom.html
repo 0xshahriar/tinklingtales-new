@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Custom Bangles | Tinkling Tales</title>
+    <meta
+      name="description"
+      content="Collaborate with Tinkling Tales designers to craft bespoke bangle stacks tailored to your celebrations."
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body data-page="custom">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container grid grid--split">
+          <section class="card">
+            <h1 class="section__title text-left">Design with us</h1>
+            <p>
+              Share your outfit details, event theme and desired colours. Our team will respond with sketches and a quote within
+              48 hours.
+            </p>
+            <ul>
+              <li>Dedicated designer consultation via WhatsApp or Messenger</li>
+              <li>Sourcing of charms, meenakari, pearls and fabrics</li>
+              <li>Two complimentary revisions before final approval</li>
+              <li>Secure packaging and insured shipping worldwide</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h2>Tell us your story</h2>
+            <form class="form-grid" data-custom-form>
+              <div class="input-field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div class="input-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div class="input-field">
+                <label for="phone">Phone / WhatsApp</label>
+                <input id="phone" name="phone" type="tel" required />
+              </div>
+              <div class="input-field">
+                <label for="eventDate">Event date</label>
+                <input id="eventDate" name="eventDate" type="date" required />
+              </div>
+              <div class="input-field">
+                <label for="palette">Colour palette</label>
+                <input id="palette" name="palette" type="text" placeholder="e.g. blush, ivory, rose gold" />
+              </div>
+              <div class="input-field">
+                <label for="story">Describe your vision</label>
+                <textarea id="story" name="story" rows="5" required></textarea>
+              </div>
+              <button type="submit">Submit request</button>
+            </form>
+          </section>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/pages/custom.js"></script>
+  </body>
+</html>

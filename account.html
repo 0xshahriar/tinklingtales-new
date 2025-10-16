@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Account | Tinkling Tales</title>
+    <meta name="description" content="View your Tinkling Tales profile, orders and preferences." />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body data-page="account" data-protected="user">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container grid grid--columns-1-2">
+          <section data-profile></section>
+          <section class="card" id="orders">
+            <h2>Recent orders</h2>
+            <div data-orders></div>
+          </section>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/pages/account.js"></script>
+  </body>
+</html>
