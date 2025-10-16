@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Cart | Tinkling Tales</title>
+    <meta name="description" content="Review items in your Tinkling Tales cart before checkout." />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body data-page="cart">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container grid grid--columns-2-1">
+          <section class="card" data-cart-table>
+            <h1 class="section__title text-left">Your cart</h1>
+            <p data-empty-cart hidden>Your cart is empty. Explore our <a href="shop.html">shop</a> to add bangles.</p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody data-cart-body></tbody>
+            </table>
+            <div class="flex flex--gap-sm mt-md">
+              <button type="button" class="button-link" data-action="clear-cart">Clear cart</button>
+              <a class="button-link" href="shop.html">Continue shopping</a>
+            </div>
+          </section>
+          <aside class="card">
+            <h2>Summary</h2>
+            <p class="flex flex--between">
+              <span>Subtotal</span>
+              <strong data-subtotal>₹0</strong>
+            </p>
+            <p class="flex flex--between">
+              <span>Shipping</span>
+              <strong data-shipping>₹0</strong>
+            </p>
+            <hr />
+            <p class="flex flex--between total-emphasis">
+              <span>Total</span>
+              <span data-total>₹0</span>
+            </p>
+            <button type="button" data-action="checkout" class="w-100 mt-sm">Proceed to checkout</button>
+          </aside>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/pages/cart.js"></script>
+  </body>
+</html>

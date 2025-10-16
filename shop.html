@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop Bangles | Tinkling Tales</title>
+    <meta
+      name="description"
+      content="Browse handcrafted bangles from Tinkling Tales. Discover premade stacks, bridal collections and custom favourites."
+    />
+    <link rel="canonical" href="https://tinklingtales.netlify.app/shop.html" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body data-page="shop">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container">
+          <div class="card mb-xl">
+            <h1 class="section__title text-left">Shop our collections</h1>
+            <p>Use filters to explore styles curated for festivities, bridal looks and everyday sparkle.</p>
+            <div class="grid grid--gap-sm mt-lg">
+              <input type="search" placeholder="Search bangles" data-filter="search" aria-label="Search products" />
+              <div class="chip-group">
+                <button type="button" class="chip is-active" data-filter="category" data-value="all">All</button>
+                <button type="button" class="chip" data-filter="category" data-value="Premade Sets">Premade Sets</button>
+                <button type="button" class="chip" data-filter="category" data-value="Custom Favourites">Custom favourites</button>
+                <button type="button" class="chip" data-filter="category" data-value="Limited Edition">Limited edition</button>
+                <button type="button" class="chip" data-filter="category" data-value="Bridal">Bridal</button>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid--3" data-product-list></div>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/pages/shop.js"></script>
+  </body>
+</html>
