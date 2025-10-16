@@ -18,7 +18,14 @@ function renderProduct(product) {
   container.innerHTML = `
     <div class="grid grid--split grid--gap-lg">
       <div class="card card--image">
-        <img src="${product.image}" alt="${sanitizeHTML(product.name)}" data-product-image loading="lazy" />
+        <img
+          src="${product.image}"
+          alt="${sanitizeHTML(product.name)}"
+          data-product-image
+          data-fallback
+          data-fallback-src="${FALLBACK_IMAGE}"
+          loading="lazy"
+        />
       </div>
       <div class="card">
         <span class="badge">${sanitizeHTML(product.category)}</span>

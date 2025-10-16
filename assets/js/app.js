@@ -2,7 +2,7 @@ import { renderHeader } from "./components/site-header.js";
 import { renderFooter } from "./components/site-footer.js";
 import { auth } from "./auth.js";
 import { showToast } from "./utils.js";
-import { ERROR_MESSAGES } from "./constants.js";
+import { ERROR_MESSAGES, FALLBACK_IMAGE } from "./constants.js";
 import { applySeoMetadata } from "./seo.js";
 
 const pageInitializers = new Map();
@@ -53,6 +53,23 @@ function mountLayout() {
   }
 }
 
+function enableImageFallbacks() {
+  document.addEventListener(
+    "error",
+    (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLImageElement)) return;
+      if (!target.hasAttribute("data-fallback")) return;
+      if (target.dataset.fallbackApplied === "true") return;
+
+      target.dataset.fallbackApplied = "true";
+      const fallbackSrc = target.dataset.fallbackSrc || FALLBACK_IMAGE;
+      target.src = fallbackSrc;
+    },
+    true
+  );
+}
+
 function enforceProtection() {
   const { protectedPage } = document.body.dataset;
   if (!protectedPage) return true;
@@ -99,6 +116,7 @@ function initializePage() {
 
 window.addEventListener("DOMContentLoaded", () => {
   applySeoMetadata();
+  enableImageFallbacks();
   mountLayout();
   if (!enforceProtection()) return;
   setupLogout();

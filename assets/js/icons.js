@@ -51,6 +51,14 @@ export const ICONS = {
       <line x1="16.25" y1="16.25" x2="20.5" y2="20.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
     </svg>
   `,
+  calendar: `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" ry="2.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <line x1="7.5" y1="3.5" x2="7.5" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <line x1="16.5" y1="3.5" x2="16.5" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <line x1="3.5" y1="9.5" x2="20.5" y2="9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  `,
   facebook: `
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path

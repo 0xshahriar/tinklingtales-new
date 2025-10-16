@@ -9,6 +9,7 @@ export function renderHeader(currentPath = "/") {
     { href: "index.html", label: "Home" },
     { href: "shop.html", label: "Shop" },
     { href: "custom.html", label: "Custom Orders" },
+    { href: "blog.html", label: "Blog" },
     { href: "about.html", label: "About" },
     { href: "cart.html", label: "Cart" }
   ];

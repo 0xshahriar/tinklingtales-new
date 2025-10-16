@@ -58,7 +58,8 @@ function renderProductCard(product) {
         alt="${sanitizeHTML(product.name)}"
         class="product-card__image"
         loading="lazy"
-        onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+        data-fallback
+        data-fallback-src="${FALLBACK_IMAGE}"
       />
       <div class="product-card__content">
         <h3 class="card__title">${sanitizeHTML(product.name)}</h3>

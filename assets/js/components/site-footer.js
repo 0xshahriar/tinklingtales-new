@@ -28,6 +28,7 @@ export function renderFooter() {
             <ul>
               <li><a href="shop.html">All Products</a></li>
               <li><a href="custom.html">Custom Orders</a></li>
+              <li><a href="blog.html">Blog</a></li>
               <li><a href="about.html#faq">FAQs</a></li>
               <li><a href="policies.html">Policies</a></li>
             </ul>

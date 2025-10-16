@@ -1,13 +1,18 @@
 export function formatCurrency(value) {
+  const amount = Number(value || 0);
+
+  if (Number.isNaN(amount)) {
+    return "৳0";
+  }
+
   try {
-    return new Intl.NumberFormat("bn-BD", {
-      style: "currency",
-      currency: "BDT",
+    const formatted = new Intl.NumberFormat("en-IN", {
       maximumFractionDigits: 0
-    }).format(value);
+    }).format(amount);
+    return `৳${formatted}`;
   } catch (error) {
     console.warn("Falling back to manual currency format", error);
-    return `৳${Number(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+    return `৳${amount.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
   }
 }
 
