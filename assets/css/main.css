@@ -767,8 +767,14 @@ button:focus {
   margin-inline: auto;
 }
 
-.checkout-layout .card {
+.checkout-layout > * {
   width: 100%;
+}
+
+.checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .checkout-summary {
@@ -776,6 +782,24 @@ button:focus {
   box-shadow: 0 24px 48px rgba(26, 10, 35, 0.08);
   align-self: stretch;
   position: static;
+}
+
+.account-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: min(960px, 100%);
+  margin-inline: auto;
+}
+
+.account-layout > * {
+  width: 100%;
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .cart-summary p {
@@ -1089,16 +1113,7 @@ button:focus {
     margin-top: 1rem;
   }
 
-  .checkout-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .checkout-layout form {
-    order: 1;
-  }
-
   .checkout-summary {
-    order: 2;
     box-shadow: 0 12px 32px rgba(26, 10, 35, 0.12);
     width: 100%;
   }
