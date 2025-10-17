@@ -740,7 +740,11 @@ button:focus {
 }
 
 .cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: min(960px, 100%);
+  margin-inline: auto;
 }
 
 .cart-layout > * {
@@ -750,9 +754,9 @@ button:focus {
 .cart-summary {
   border: 1px solid rgba(156, 39, 176, 0.1);
   box-shadow: 0 24px 48px rgba(26, 10, 35, 0.08);
-  position: sticky;
-  top: 6.5rem;
-  align-self: start;
+  position: relative;
+  top: auto;
+  align-self: stretch;
 }
 
 .checkout-layout {
