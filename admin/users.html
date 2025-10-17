@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manage users | Tinkling Tales</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body data-page="admin-users" data-protected="admin">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container">
+          <div class="card mb-lg">
+            <h1 class="section__title text-left">Team permissions</h1>
+            <p class="text-muted">Control who can access order fulfilment, catalogue edits and analytics. Assign admin access carefully.</p>
+          </div>
+          <div class="admin-shell">
+            <aside class="admin-shell__sidebar" data-admin-nav></aside>
+            <div class="admin-shell__content">
+              <section class="card" aria-live="polite">
+                <div class="admin-toolbar">
+                  <div>
+                    <h2 class="mb-none">Active collaborators</h2>
+                    <p class="text-muted">Admins can update any section, managers can fulfil orders and edit products.</p>
+                  </div>
+                </div>
+                <div data-admin-users></div>
+              </section>
+              <section class="card">
+                <h2>Update user role</h2>
+                <p class="text-muted">Roles update instantly and will apply the next time the teammate signs in.</p>
+                <form class="form-grid" data-role-form>
+                  <div class="input-field">
+                    <label for="roleEmail">User email</label>
+                    <input id="roleEmail" name="email" type="email" required />
+                  </div>
+                  <div class="input-field">
+                    <label for="userRole">Role</label>
+                    <select id="userRole" name="role" required>
+                      <option value="user">Customer</option>
+                      <option value="manager">Manager</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                  <button type="submit">Update role</button>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/pages/admin-users.js"></script>
+  </body>
+</html>

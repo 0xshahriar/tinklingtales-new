@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manage products | Tinkling Tales</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body data-page="admin-products" data-protected="admin">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container">
+          <div class="card mb-lg">
+            <h1 class="section__title text-left">Catalogue management</h1>
+            <p class="text-muted">Keep the storefront in sync with your Google Sheets inventory. Update prices, imagery and descriptions in one place.</p>
+          </div>
+          <div class="admin-shell">
+            <aside class="admin-shell__sidebar" data-admin-nav></aside>
+            <div class="admin-shell__content">
+              <section class="card" aria-live="polite">
+                <div class="admin-toolbar">
+                  <div>
+                    <h2 class="mb-none">Current products</h2>
+                    <p class="text-muted">A read-only snapshot of the items your customers can shop.</p>
+                  </div>
+                </div>
+                <div data-admin-product-list></div>
+              </section>
+              <section class="card">
+                <h2>Add or update a product</h2>
+                <p class="text-muted">Use an existing product ID to update or provide a new ID to create a fresh listing.</p>
+                <form class="form-grid form-grid--2" data-product-form>
+                  <div class="input-field">
+                    <label for="productId">Product ID</label>
+                    <input id="productId" name="id" type="text" placeholder="e.g. lavender-dream" required />
+                  </div>
+                  <div class="input-field">
+                    <label for="productName">Name</label>
+                    <input id="productName" name="name" type="text" required />
+                  </div>
+                  <div class="input-field">
+                    <label for="productPrice">Price (BDT)</label>
+                    <input id="productPrice" name="price" type="number" min="0" step="1" required />
+                  </div>
+                  <div class="input-field">
+                    <label for="productCategory">Category</label>
+                    <input id="productCategory" name="category" type="text" placeholder="e.g. Premade Sets" required />
+                  </div>
+                  <div class="input-field form-grid__full">
+                    <label for="productImage">Image URL</label>
+                    <input id="productImage" name="image" type="url" placeholder="https://" required />
+                  </div>
+                  <div class="input-field form-grid__full">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" name="description" rows="3" required></textarea>
+                  </div>
+                  <button type="submit" class="form-grid__full">Save product</button>
+                </form>
+              </section>
+              <section class="card">
+                <h2>Remove a product</h2>
+                <p class="text-muted">Provide an existing product ID to archive it from the storefront.</p>
+                <form class="form-grid" data-product-delete>
+                  <div class="input-field">
+                    <label for="deleteProductId">Product ID</label>
+                    <input id="deleteProductId" name="productId" type="text" required />
+                  </div>
+                  <button type="submit">Remove product</button>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/pages/admin-products.js"></script>
+  </body>
+</html>

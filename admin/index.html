@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin dashboard | Tinkling Tales</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body data-page="admin-dashboard" data-protected="admin">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container">
+          <div class="card mb-lg">
+            <h1 class="section__title text-left">Performance overview</h1>
+            <p class="text-muted">Monitor revenue, product performance and the health of your fulfilment pipeline at a glance.</p>
+          </div>
+          <div class="admin-shell">
+            <aside class="admin-shell__sidebar" data-admin-nav></aside>
+            <div class="admin-shell__content">
+              <section class="grid grid--4" data-admin-stats aria-live="polite"></section>
+              <section class="card" aria-live="polite">
+                <div class="admin-toolbar">
+                  <div>
+                    <h2 class="mb-none">Revenue trend</h2>
+                    <p class="text-muted">Last 7 days</p>
+                  </div>
+                </div>
+                <div data-admin-trend></div>
+              </section>
+              <section class="card" aria-live="polite">
+                <div class="admin-toolbar">
+                  <div>
+                    <h2 class="mb-none">Top performing products</h2>
+                    <p class="text-muted">Track your best-selling stacks and sets.</p>
+                  </div>
+                </div>
+                <div data-admin-top-products></div>
+              </section>
+              <section class="card" aria-live="polite">
+                <div class="admin-toolbar">
+                  <div>
+                    <h2 class="mb-none">Recent orders</h2>
+                    <p class="text-muted">Quick snapshot of the latest customer activity.</p>
+                  </div>
+                </div>
+                <div data-admin-recent-orders></div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/pages/admin-dashboard.js"></script>
+  </body>
+</html>

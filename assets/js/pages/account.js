@@ -29,7 +29,7 @@ function renderOrders(orders = []) {
 
   const rows = orders
     .map((order) => {
-      const status = ORDER_STATUS[order.status] || ORDER_STATUS.processing;
+      const status = ORDER_STATUS[order.status] || ORDER_STATUS.pending;
       return `
         <tr>
           <td>${order.orderId}</td>

@@ -23,10 +23,13 @@ export const ERROR_MESSAGES = {
   unknown: "Something went wrong. Please try again later."
 };
 
+export const ORDER_STATUS_FLOW = ["pending", "confirmed", "delivered", "received"];
+
 export const ORDER_STATUS = {
-  processing: { label: "Processing", className: "status-pill status-pill--pending" },
-  completed: { label: "Completed", className: "status-pill status-pill--success" },
-  cancelled: { label: "Cancelled", className: "status-pill status-pill--danger" }
+  pending: { label: "Pending", className: "status-pill status-pill--pending" },
+  confirmed: { label: "Confirmed", className: "status-pill status-pill--confirmed" },
+  delivered: { label: "Delivered", className: "status-pill status-pill--delivered" },
+  received: { label: "Received", className: "status-pill status-pill--received" }
 };
 
 export const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80";

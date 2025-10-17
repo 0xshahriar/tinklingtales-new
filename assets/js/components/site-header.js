@@ -38,7 +38,7 @@ export function renderHeader(currentPath = "/") {
         </div>
       `;
 
-  const adminLink = isAdmin ? `<a href="admin.html" class="button-link">Admin</a>` : "";
+  const adminLink = isAdmin ? `<a href="admin/index.html" class="button-link">Admin</a>` : "";
 
   return `
     <header class="header">

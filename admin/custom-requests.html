@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Custom requests | Tinkling Tales</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body data-page="admin-custom" data-protected="admin">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container">
+          <div class="card mb-lg">
+            <h1 class="section__title text-left">Custom product requests</h1>
+            <p class="text-muted">Respond quickly to bespoke bangle inquiries, track their progress and capture key customer preferences.</p>
+          </div>
+          <div class="admin-shell">
+            <aside class="admin-shell__sidebar" data-admin-nav></aside>
+            <div class="admin-shell__content">
+              <section class="card" aria-live="polite">
+                <div class="admin-toolbar">
+                  <div>
+                    <h2 class="mb-none">Inbox</h2>
+                    <p class="text-muted">See the latest custom briefs and follow up before they go cold.</p>
+                  </div>
+                </div>
+                <div data-custom-requests></div>
+              </section>
+              <section class="card">
+                <h2>Update request status</h2>
+                <p class="text-muted">Keep the team aligned with the latest progress so customers receive timely updates.</p>
+                <form class="form-grid" data-custom-form>
+                  <div class="input-field">
+                    <label for="requestId">Request ID</label>
+                    <input id="requestId" name="requestId" type="text" required />
+                  </div>
+                  <div class="input-field">
+                    <label for="requestStatus">Status</label>
+                    <select id="requestStatus" name="status" data-custom-status required></select>
+                  </div>
+                  <div class="input-field form-grid__full">
+                    <label for="requestNotes">Internal notes</label>
+                    <textarea id="requestNotes" name="notes" rows="3" placeholder="Share design updates, quotes or next steps"></textarea>
+                  </div>
+                  <button type="submit">Update request</button>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/pages/admin-custom.js"></script>
+  </body>
+</html>

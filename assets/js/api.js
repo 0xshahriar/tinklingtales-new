@@ -49,6 +49,9 @@ export const api = {
   authenticate(credentials) {
     return request("/auth/login", { method: "POST", body: credentials });
   },
+  requestPasswordReset(payload) {
+    return request("/auth/forgot-password", { method: "POST", body: payload });
+  },
   registerAccount(details) {
     return request("/auth/register", { method: "POST", body: details });
   },
@@ -58,13 +61,28 @@ export const api = {
   getDashboard(token) {
     return request("/admin/dashboard", { token });
   },
+  getAdminOrders(token) {
+    return request("/admin/orders", { token });
+  },
   upsertProduct(data, token) {
     return request("/admin/products", { method: "POST", body: data, token });
+  },
+  deleteProduct(id, token) {
+    return request(`/admin/products/${encodeURIComponent(id)}`, { method: "DELETE", token });
   },
   updateOrderStatus(data, token) {
     return request("/admin/orders/status", { method: "PATCH", body: data, token });
   },
   updateUserRole(data, token) {
     return request("/admin/users/role", { method: "PATCH", body: data, token });
+  },
+  getAdminUsers(token) {
+    return request("/admin/users", { token });
+  },
+  getCustomRequests(token) {
+    return request("/admin/custom-requests", { token });
+  },
+  updateCustomRequest(data, token) {
+    return request("/admin/custom-requests", { method: "PATCH", body: data, token });
   }
 };

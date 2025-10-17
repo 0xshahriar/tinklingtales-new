@@ -71,7 +71,7 @@ function enableImageFallbacks() {
 }
 
 function enforceProtection() {
-  const { protectedPage } = document.body.dataset;
+  const protectedPage = document.body.dataset.protectedPage || document.body.dataset.protected;
   if (!protectedPage) return true;
 
   const requireAdmin = protectedPage === "admin";

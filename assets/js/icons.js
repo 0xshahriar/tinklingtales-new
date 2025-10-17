@@ -92,6 +92,46 @@ export const ICONS = {
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
     </svg>
+  `,
+  dashboard: `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" />
+      <rect x="13" y="3.5" width="7.5" height="5" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" />
+      <rect x="13" y="10.5" width="7.5" height="10" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" />
+      <rect x="3.5" y="13" width="7.5" height="7.5" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" />
+    </svg>
+  `,
+  orders: `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M6 4h12l1.5 4H4.5L6 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+      <path d="M5 8h14v10.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18.5V8z" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M9 12h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  `,
+  products: `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="4" y="4" width="16" height="16" rx="3" ry="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M8 9h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M8 13h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M8 17h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  `,
+  users: `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="8.5" cy="8.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <circle cx="17" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M3.5 18.5c0-3 2.5-5 5-5h1c2.5 0 5 2 5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M14.5 18.5c0-1.8 1.5-3 3-3h1c1.5 0 3 1.2 3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  `,
+  customRequests: `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4.5 5.5h15v13h-15z" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <path d="M8 3.5v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M16 3.5v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M8 15h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
   `
 };
 

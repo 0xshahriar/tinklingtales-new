@@ -194,8 +194,17 @@ button:focus {
   font-size: 0.85rem;
 }
 
+.badge--info {
+  background: rgba(63, 81, 181, 0.12);
+  color: #283593;
+}
+
 .text-center {
   text-align: center;
+}
+
+.mb-none {
+  margin-bottom: 0;
 }
 
 .grid {
@@ -868,6 +877,22 @@ button:focus {
   width: 100%;
 }
 
+.form-grid__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-grid__actions button {
+  flex: 1 1 auto;
+}
+
+.form-grid__actions a {
+  white-space: nowrap;
+}
+
 .input-field {
   display: grid;
   gap: 0.5rem;
@@ -970,19 +995,163 @@ button:focus {
   font-weight: 600;
 }
 
-.status-pill--success {
-  background: rgba(56, 142, 60, 0.15);
+.status-pill--pending {
+  background: rgba(255, 179, 0, 0.15);
+  color: #e65100;
+}
+
+.status-pill--confirmed {
+  background: rgba(63, 81, 181, 0.12);
+  color: #283593;
+}
+
+.status-pill--delivered {
+  background: rgba(0, 150, 136, 0.12);
+  color: #00695c;
+}
+
+.status-pill--received {
+  background: rgba(76, 175, 80, 0.12);
   color: #2e7d32;
 }
 
-.status-pill--pending {
-  background: rgba(255, 179, 0, 0.15);
-  color: #ef6c00;
+.admin-shell {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
-.status-pill--danger {
-  background: rgba(229, 57, 53, 0.15);
-  color: #c62828;
+.admin-shell__sidebar {
+  flex: 0 0 260px;
+  position: sticky;
+  top: 7.5rem;
+}
+
+.admin-shell__content {
+  flex: 1 1 auto;
+  width: 100%;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.admin-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  color: inherit;
+  font-weight: 600;
+  transition: var(--transition-base);
+}
+
+.admin-nav__link .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+}
+
+.admin-nav__link.is-active,
+.admin-nav__link:hover,
+.admin-nav__link:focus {
+  background: rgba(156, 39, 176, 0.12);
+  color: var(--color-primary-dark);
+}
+
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-toolbar__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.stat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stat-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 16px;
+  background: rgba(156, 39, 176, 0.06);
+  font-weight: 600;
+}
+
+.stat-list li strong {
+  font-size: 1rem;
+  color: var(--color-primary-dark);
+}
+
+.stat-list--two-column {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.data-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+}
+
+.data-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.data-list dt {
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.data-list dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .admin-shell {
+    flex-direction: column;
+  }
+
+  .admin-shell__sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .admin-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .admin-nav__link {
+    flex: 1 1 160px;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 960px) {
