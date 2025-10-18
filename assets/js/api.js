@@ -11,11 +11,16 @@ async function request(endpoint, { method = "GET", body, token } = {}) {
     credentials: "omit"
   };
 
+  if (method !== "GET" && method !== "POST") {
+    options.headers["X-HTTP-Method-Override"] = method;
+    options.method = "POST";
+  }
+
   if (token) {
     options.headers.Authorization = `Bearer ${token}`;
   }
 
-  if (body) {
+  if (body && options.method !== "GET") {
     options.body = JSON.stringify(body);
   }
 
