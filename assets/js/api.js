@@ -1,7 +1,15 @@
 import { APP_CONFIG } from "./constants.js";
 
+function buildApiUrl(endpoint = "") {
+  const base = APP_CONFIG.apiBaseUrl.endsWith("/")
+    ? APP_CONFIG.apiBaseUrl
+    : `${APP_CONFIG.apiBaseUrl}/`;
+  const path = endpoint.startsWith("/") ? endpoint.slice(1) : endpoint;
+  return new URL(path, base);
+}
+
 async function request(endpoint, { method = "GET", body, token } = {}) {
-  const url = new URL(endpoint, APP_CONFIG.apiBaseUrl);
+  const url = buildApiUrl(endpoint);
 
   const options = {
     method,

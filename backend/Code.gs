@@ -129,8 +129,6 @@ function ensureSchema_() {
     "expiresAt",
     "createdAt"
   ]);
-
-  ensureDefaultAdminUser_();
 }
 
 function parseBody_(e) {
