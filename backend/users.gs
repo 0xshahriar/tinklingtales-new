@@ -95,3 +95,41 @@ function listUsers_() {
   const table = getTable_(sheet);
   return table.rows.map(mapUserRow_);
 }
+
+function ensureDefaultAdminUser_() {
+  const adminEmail = "mdshahriaralamshaon8@gmail.com";
+  const adminName = "Md Shahriar Alam Shaon";
+  const adminPassword = "Shahriar@123";
+
+  const passwordHash = hashPassword_(adminPassword);
+  const existing = getUserByEmail_(adminEmail);
+  if (existing) {
+    const updates = {};
+    if (existing.user.role !== "admin") {
+      updates.role = "admin";
+    }
+    if (!existing.user.name) {
+      updates.name = adminName;
+    }
+    if (existing.user.passwordHash !== passwordHash) {
+      updates.passwordHash = passwordHash;
+    }
+    if (Object.keys(updates).length) {
+      updates.updatedAt = nowIso_();
+      updateRow_(
+        getUsersSheet_(),
+        existing.headers,
+        existing.rowIndex,
+        updates
+      );
+    }
+    return;
+  }
+
+  createUser_({
+    email: adminEmail,
+    passwordHash,
+    name: adminName,
+    role: "admin"
+  });
+}

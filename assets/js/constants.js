@@ -2,7 +2,8 @@ export const APP_CONFIG = {
   siteName: "Tinkling Tales",
   siteUrl: "https://tinklingtales.netlify.app",
   contactEmail: "hello@tinklingtales.com",
-  apiBaseUrl: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",
+  apiBaseUrl:
+    "https://script.google.com/macros/s/AKfycbx4nmm7Amb9q-BxuxOaA7R877sDwaV20mUWnAw5GkVqWUEzaw3gtFcHVtkr6TQLKSmo/exec",
   social: {
     facebook: "https://www.facebook.com/tinklingtales",
     instagram: "https://www.instagram.com/tinklingtales",
