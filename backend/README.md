@@ -1,78 +1,135 @@
 # Google Apps Script Backend for Tinkling Tales
 
-This directory contains an Apps Script implementation that backs the
-Tinkling Tales storefront. It exposes a REST-like JSON API that the
-frontend calls from Netlify. The backend persists data in Google Sheets
-and can be deployed as a Web App from the Apps Script editor.
+This folder ships a fully scripted Google Apps Script (GAS) backend that
+drives the Tinkling Tales storefront. The code exposes a JSON HTTP API,
+uses Google Sheets for storage, and is designed to be deployed as a GAS
+Web App that the Netlify frontend can call securely.
 
-## Overview
+The sections below walk through the exact steps required to provision the
+spreadsheet, configure environment secrets, and publish the API. Follow
+each step in order – no prior Apps Script experience is required.
 
-The backend is organised around the following core sheets:
+## 1. Create the spreadsheet container
 
-- **Products** – catalogue of bangles and metadata used by the shop.
-- **Orders** – customer checkout submissions and fulfilment status.
-- **Users** – registered customers, admins, and managers.
-- **Sessions** – API tokens that keep users signed in.
-- **CustomRequests** – bespoke order enquiries submitted from the site.
-- **PasswordResets** – short-lived tokens for the “forgot password” flow.
+1. Sign in to the Google account that will own the data.
+2. Create a **new Google Spreadsheet** (Google Drive → New → Google
+   Sheets) and give it an identifiable name such as `Tinkling Tales API`.
+3. Open the spreadsheet once so Apps Script can link to it later. You do
+   not need to add any tabs manually; the script will create the required
+   sheets the first time it runs.
 
-Each sheet is automatically created with the expected headers the first
-time the script runs, so a blank spreadsheet is enough to get started.
+### Sheet layout reference
 
-## Prerequisites
+The backend initialises the spreadsheet with the following tabs and
+columns. You do not need to pre-populate them, but the list is useful if
+you ever need to inspect or repair the data manually.
 
-1. Create a new Google Spreadsheet dedicated to the storefront backend.
-2. In Apps Script, add the files from this directory. You can either:
-   - Open the script editor from the spreadsheet and copy/paste the
-     contents of each `.gs` file, or
-   - Use clasp (`https://github.com/google/clasp`) to push the project.
-3. In the Apps Script editor, open **Project Settings → Script
-   properties** and add the following keys:
+| Sheet name | Columns (in order) | Notes |
+| --- | --- | --- |
+| `Products` | `id`, `name`, `price`, `currency`, `description`, `images`, `tags`, `inventory`, `isActive`, `createdAt`, `updatedAt` | `images` and `tags` are stored as JSON arrays. Prices are in BDT. |
+| `Orders` | `orderId`, `customerId`, `customerName`, `customerEmail`, `shippingAddress`, `items`, `total`, `status`, `locked`, `createdAt`, `updatedAt` | `status` flows through pending → confirmed → delivered → received. `locked` prevents cancellation after auto-confirm. |
+| `Users` | `userId`, `email`, `passwordHash`, `name`, `phone`, `preferredChannel`, `role`, `createdAt`, `updatedAt` | `role` can be `customer`, `manager`, or `admin`. Admin/manager roles unlock the dashboard. |
+| `Sessions` | `token`, `userId`, `role`, `issuedAt`, `expiresAt` | Stores active JWT sessions for the API. |
+| `CustomRequests` | `requestId`, `customerName`, `customerEmail`, `details`, `status`, `createdAt`, `updatedAt` | Tracks bespoke bangle enquiries. |
+| `PasswordResets` | `token`, `userId`, `expiresAt`, `createdAt` | Supports the “forgot password” flow. |
 
-   | Property | Description |
-   | --- | --- |
-   | `SPREADSHEET_ID` | The ID of the spreadsheet created in step 1. |
-   | `JWT_SECRET` | A long random string used for hashing session tokens. |
-   | `ALLOWED_ORIGINS` | Comma-separated list of front-end origins, e.g. `https://tinklingtales.netlify.app`. |
-   | `TOKEN_EXPIRY_HOURS` *(optional)* | Overrides the default 7-day session lifetime. |
+> ℹ️ If any sheet is accidentally deleted, the backend will recreate it
+> with the exact header row the next time it receives a request.
 
-   The script reads these properties at runtime so credentials never live
-   in version control.
+## 2. Set up the Apps Script project
 
-4. (Optional) Configure **Services → Gmail API** if you plan to send reset
-   emails. The default implementation simply records a reset token in the
-   sheet and returns a stub message to the caller.
+1. With the spreadsheet open, choose **Extensions → Apps Script**. This
+   opens the Apps Script editor bound to your spreadsheet.
+2. Delete the placeholder `Code.gs` file that Google creates – we will
+   replace it with the files from this repository.
+3. For each `.gs` file in this `backend/` folder (`Code.gs`, `auth.gs`,
+   `orders.gs`, etc.), create a file with the same name in the editor and
+   paste the contents. Repeat for `appsscript.json` by choosing **Project
+   Settings → Show "appsscript.json"**.
+   - Alternatively, you can use the [clasp](https://github.com/google/clasp)
+     CLI to push the project from your local machine: run `clasp login`,
+     `clasp create`, copy the `scriptId` into `.clasp.json`, and `clasp
+     push`. Pick whichever workflow you are more comfortable with.
 
-## Deploying as a Web App
+### Configure script properties (environment secrets)
 
-1. In the Apps Script editor choose **Deploy → Test deployments** and
-   verify the API works via the **Latest code** deployment.
-2. When ready, choose **Deploy → New deployment**, pick **Web app**, and
-   set:
-   - **Execute as**: *Me*
+The backend reads all secrets from **Project Settings → Script properties**.
+Click **Add script property** for each of the keys below:
+
+| Property | Required | Example value | Description |
+| --- | --- | --- | --- |
+| `SPREADSHEET_ID` | ✅ | `1abcdEfGhIJK_lmnopQRstuVWxyz0123456789` | The ID portion of the spreadsheet URL (between `/d/` and `/edit`). |
+| `JWT_SECRET` | ✅ | `d5c1bb2b4c96498db99f8a7bd4b3fc70` | A long random string (at least 32 characters). Generate one with any password manager or run `openssl rand -hex 32` locally. This powers the HMAC hashing for session tokens. |
+| `ALLOWED_ORIGINS` | ✅ | `https://tinklingtales.netlify.app,https://preview--tinklingtales.netlify.app` | Comma-separated list of front-end origins permitted to call the API. Include your Netlify live domain and any staging domains you plan to use. |
+| `TOKEN_EXPIRY_HOURS` | ⭕ | `168` | Optional override for the session lifetime in hours (defaults to 7 days if omitted). |
+
+Changes are applied immediately – there is no need to redeploy after
+updating a property.
+
+## 3. Deploy as a Web App
+
+1. In the Apps Script editor, click **Deploy → Test deployments** and
+   create a test deployment to verify there are no syntax errors.
+2. Once the test call succeeds, choose **Deploy → New deployment**, select
+   **Web app**, and fill in the form:
+   - **Description**: `Production API`
+   - **Execute as**: *Me (your account)*
    - **Who has access**: *Anyone*
-3. Copy the deployment URL and paste it into
-   `assets/js/constants.js → APP_CONFIG.apiBaseUrl` in the frontend.
-4. Rebuild / redeploy the Netlify site.
+3. After saving, copy the **Web app URL**. Paste this value into the
+   frontend configuration at `assets/js/constants.js` under
+   `APP_CONFIG.apiBaseUrl`.
+4. Redeploy the Netlify site so it picks up the new API endpoint.
 
-The backend already returns the correct CORS headers for the authorised
-origins defined in the `ALLOWED_ORIGINS` property.
+The backend automatically returns CORS headers for every origin listed in
+`ALLOWED_ORIGINS`. If a request comes from any other domain the response
+is rejected before touching the data.
 
-## File Structure
+## 4. Understanding the built-in automations
+
+- **Authentication & JWTs**: `auth.gs` hashes passwords, issues signed
+  session tokens, and writes them to the `Sessions` sheet. The secret used
+  to sign tokens is the `JWT_SECRET` property configured above.
+- **Order auto-confirmation**: `orders.gs` upgrades orders from `pending`
+  to `confirmed` two hours after creation, locking cancellation once the
+  transition happens. Admins can still push orders forward to `delivered`
+  or `received` through the dashboard.
+- **Role-based permissions**: API routes under `/admin/*` require the user
+  role to be either `admin` or `manager`. Customer-facing routes only need
+  a valid session token.
+
+## 5. Testing the API
+
+Apps Script exposes a simple execution log that you can use while testing:
+
+1. From the editor, open **Executions** in the left sidebar to see recent
+   requests and any errors.
+2. Use a tool such as `curl` or Postman to exercise the endpoints. For
+   example, to authenticate from the command line:
+
+   ```bash
+   curl -X POST "https://<your-script-id>.script.google.com/macros/s/<deployment-id>/exec/auth/login" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"admin@example.com","password":"your-password"}'
+   ```
+
+   Successful responses include a `token`, `profile`, and `isAdmin` flag.
+   Use the `token` for subsequent authenticated requests.
+
+## 6. File overview
 
 | File | Responsibility |
 | --- | --- |
 | `appsscript.json` | Script manifest enabling the Sheets and URL Fetch services. |
-| `Code.gs` | Entry point with routing, HTTP helpers, and schema bootstrap. |
-| `auth.gs` | Authentication, password hashing, session token handling. |
-| `products.gs` | CRUD helpers for the product catalogue. |
-| `orders.gs` | Order persistence and fulfilment status transitions. |
+| `Code.gs` | Entry point, request routing, schema bootstrapping, and shared HTTP helpers. |
+| `utils.gs` | Spreadsheet helpers, ID generation, JSON parsing utilities. |
+| `auth.gs` | Registration, login, password reset, and session token management. |
+| `products.gs` | Product catalogue CRUD helpers. |
+| `orders.gs` | Order persistence, fulfilment status transitions, and the two-hour confirmation lock. |
 | `users.gs` | User and role management utilities. |
-| `custom-requests.gs` | Storage for bespoke order enquiries. |
-| `dashboard.gs` | Aggregated analytics returned on the admin dashboard. |
+| `custom-requests.gs` | Storage and updates for bespoke order enquiries. |
+| `dashboard.gs` | Aggregated analytics surfaced in the admin overview. |
+| `admin.gs` | Combined controller functions wired to `/admin/*` routes. |
 
-Feel free to extend these modules with additional sheets or automation as
-the business grows. Because all access is funneled through the helper
-functions, enforcing validation and permissions in one place becomes
-straightforward.
-
+With these steps complete, the Apps Script backend is ready to serve the
+Tinkling Tales storefront in production. Whenever you update any `.gs`
+file, redeploy the Web App (step 3) so the changes go live.

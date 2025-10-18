@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin sign in | Tinkling Tales</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body data-page="admin-login">
+    <div class="main-wrapper">
+      <div data-component="header"></div>
+      <main class="section">
+        <div class="container max-width-sm">
+          <div class="card">
+            <h1 class="section__title text-left">Administrator access</h1>
+            <p>Sign in with your admin or manager credentials to oversee orders, products, and user roles.</p>
+            <form class="form-grid" data-admin-login-form>
+              <div class="input-field">
+                <label for="admin-email">Email</label>
+                <input id="admin-email" name="email" type="email" required autocomplete="email" />
+              </div>
+              <div class="input-field">
+                <label for="admin-password">Password</label>
+                <input id="admin-password" name="password" type="password" required autocomplete="current-password" />
+              </div>
+              <div class="form-grid__full form-grid__actions">
+                <button type="submit">Sign in</button>
+                <a class="link-underline" href="../forgot-password.html">Forgot password?</a>
+              </div>
+            </form>
+            <p class="note-text">
+              Looking for the customer portal? <a class="link-underline" href="../login.html">Sign in here</a> or request an invite from the head office.
+            </p>
+          </div>
+        </div>
+      </main>
+      <div data-component="footer"></div>
+    </div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/pages/admin-login.js"></script>
+  </body>
+</html>

@@ -78,7 +78,7 @@ function enforceProtection() {
   const result = auth.requireAuth({ admin: requireAdmin });
 
   if (!result.allowed) {
-    const redirectTo = requireAdmin ? "login.html?admin=true" : "login.html";
+    const redirectTo = requireAdmin ? "/admin/login.html" : "/login.html";
     const message =
       result.reason === "forbidden" ? ERROR_MESSAGES.forbidden : ERROR_MESSAGES.unauthorized;
     showToast(message, "warning");
